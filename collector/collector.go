@@ -92,10 +92,7 @@ func ReadLogStdout(stdinScanner *bufio.Scanner) ([]*TestEventForView, *Results, 
 
 	for stdinScanner.Scan() {
 		line := stdinScanner.Bytes()
-		te, err := UnmarshalTestEvent(line)
-		if err != nil {
-			return nil, nil, err
-		}
+		te, _ := UnmarshalTestEvent(line)
 		if te.TestName != "" {
 			tev, ok := testMap[te.TestName]
 			if ok {
